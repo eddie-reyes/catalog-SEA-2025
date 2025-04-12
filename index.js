@@ -23,7 +23,7 @@
  *
  */
 
-import data from './dataset.js';
+import data from './src/dataset.js';
 
 const cardContainer = document.getElementById('card-container');
 
@@ -33,8 +33,10 @@ const row = document.querySelector('.row');
 
 const canvas = document.getElementById('canvas');
 canvas.width = window.innerWidth * window.devicePixelRatio;
-canvas.height = window.innerHeight * window.devicePixelRatio;
+canvas.height = window.innerHeight * window.devicePixelRatio * 5;
 const ctx = canvas.getContext('2d');
+ctx.lineWidth = 10;
+ctx.strokeStyle = '#a2b9bd';
 
 // This function adds cards the page to display the data in the array
 function showCards() {
@@ -71,3 +73,7 @@ function renderGraphics() {
 document.addEventListener('DOMContentLoaded', showCards);
 
 window.addEventListener('resize', renderGraphics);
+
+window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+};
