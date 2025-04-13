@@ -24,23 +24,42 @@
  */
 
 import data from './src/dataset.js';
+import { searchSpecies, filterByKingdom } from './src/utils.js';
 
 const cardContainer = document.getElementById('card-container');
+let dataBuffer;
 
 const templateCategory = document.querySelector('.category');
 const templateSpecies = document.querySelector('.species');
 const row = document.querySelector('.row');
 
 const canvas = document.getElementById('canvas');
-canvas.width = window.innerWidth * window.devicePixelRatio;
-canvas.height = window.innerHeight * window.devicePixelRatio * 5;
+
+const searchInput = document.querySelector('.search-input');
+const searchButton = document.querySelector('.search-btn');
+
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
 
 // This function adds cards the page to display the data in the array
-function showCards() {
+function showCards(option) {
+    //search
+    if (option.type == 'search') {
+        dataBuffer = searchSpecies(data, option.keyword);
+    }
+    //filter
+    else if (option.type == 'filter') {
+    }
+    //no option
+    else {
+        dataBuffer = data;
+    }
+    //reset card containter
+    while (cardContainer.firstChild) {
+        cardContainer.firstChild.remove();
+    }
     //each row is represented by an array in data
-    data.forEach(categories => {
+    dataBuffer.forEach(categories => {
         //create new row
         const nextRow = row.cloneNode(true);
         cardContainer.appendChild(nextRow);
@@ -55,13 +74,16 @@ function showCards() {
             category.renderSelf(templateSpecies);
         });
     });
-    //render connections on canvas after creating elements, otherwise positions will be incorrect
+    //render connections on canvas after creating elements, otherwise card positions will be incorrect
     renderGraphics();
 }
 
 function renderGraphics() {
+    canvas.width = window.innerWidth * window.devicePixelRatio;
+    canvas.height = window.innerHeight * window.devicePixelRatio * 5;
+    ctx.lineWidth = 10;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    data.forEach(categories => {
+    dataBuffer.forEach(categories => {
         categories.forEach(category => {
             category.renderConnections(ctx);
         });
@@ -69,6 +91,13 @@ function renderGraphics() {
 }
 
 // This calls the addCards() function when the page is first loaded
+
+searchButton.onclick = function () {
+    if (searchInput.value.length == 0) return;
+
+    showCards({ type: 'search', keyword: searchInput.value });
+};
+
 document.addEventListener('DOMContentLoaded', showCards);
 
 window.addEventListener('resize', renderGraphics);

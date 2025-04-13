@@ -29,14 +29,14 @@ class Category extends Card {
     }
 
     renderConnections(ctx) {
-        ctx.strokeStyle = '#a2b9bd';
+        ctx.strokeStyle = this.color;
 
         if (this.parent != null) {
             let from = this.parent.element.getBoundingClientRect();
             let to = this.element.getBoundingClientRect();
             ctx.beginPath();
-            ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2);
-            ctx.lineTo(to.x + to.width / 2, to.y + to.height / 2);
+            ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2 + window.pageYOffset);
+            ctx.lineTo(to.x + to.width / 2, to.y + to.height / 2 + window.pageYOffset);
             ctx.stroke();
         }
     }

@@ -4,16 +4,27 @@ body {
     padding: 0;
     font-family: 'Helvetica';
     font-weight: normal;
+    overflow-x: hidden;
+    background-color: #324b4c;
 }
 
 .main-header {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding-bottom: 10px;
+    padding-top: 2rem;
+}
+
+.subtext {
+    opacity: 50%;
+    font-style: italic;
+    font-size: x-large;
+    text-align: right;
+    margin: 0 21%;
+    font-weight: 200;
+    transform: translateY(-1rem);
 }
 
 #canvas {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
 }
 
 .title {
@@ -26,15 +37,14 @@ body {
 
 #card-container {
     margin: 20px;
+    margin-top: 0;
 }
 
 .row {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 5rem;
     margin: 5rem 0;
-    height: 20rem;
 }
 
 .category {
@@ -42,11 +52,17 @@ body {
     margin: 1rem;
     padding: 1rem;
     color: white;
+    z-index: 1;
+    text-align: center;
+}
+
+.category:hover {
+    transform: scale(
+        1.1
+    ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .species {
-    display: flex;
-    text-align: center;
     margin: 0;
 }
 
@@ -70,4 +86,38 @@ p {
 
 h2 {
     margin: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    z-index: 2;
+}
+
+input {
+    width: 300px;
+    height: 30px;
+    font-size: large;
+    margin-left: 0.5rem;
+}
+
+.search-btn {
+    padding: 12px 24px;
+    margin-left: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #0056b3;
 }
