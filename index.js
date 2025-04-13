@@ -24,40 +24,50 @@
  */
 
 import data from './src/dataset.js';
-import { searchSpecies, filterByKingdom } from './src/utils.js';
+import { searchSpecies, filterByKingdom, resetAll } from './src/utils.js';
 
 const cardContainer = document.getElementById('card-container');
+
+//holds actual cards to render
 let dataBuffer;
 
+//template elements
 const templateCategory = document.querySelector('.category');
 const templateSpecies = document.querySelector('.species');
 const row = document.querySelector('.row');
 
+//drawing graphics using canvas
 const canvas = document.getElementById('canvas');
 
+//input fields and buttons
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
+const resetButton = document.querySelector('.reset-btn');
 
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
 
 // This function adds cards the page to display the data in the array
 function showCards(option) {
-    //search
-    if (option.type == 'search') {
-        dataBuffer = searchSpecies(data, option.keyword);
+    switch (option.type) {
+        //search species
+        case 'search':
+            dataBuffer = searchSpecies(data, option.keyword);
+            break;
+        //filter kingdom
+        case 'filter':
+            dataBuffer = filterByKingdom(data, option.keyword);
+            break;
+        //no option, just load entire dataset
+        default:
+            dataBuffer = data;
     }
-    //filter
-    else if (option.type == 'filter') {
-    }
-    //no option
-    else {
-        dataBuffer = data;
-    }
+
     //reset card containter
     while (cardContainer.firstChild) {
         cardContainer.firstChild.remove();
     }
+
     //each row is represented by an array in data
     dataBuffer.forEach(categories => {
         //create new row
@@ -98,10 +108,12 @@ searchButton.onclick = function () {
     showCards({ type: 'search', keyword: searchInput.value });
 };
 
+resetButton.onclick = function () {
+    resetAll(data);
+
+    showCards({ type: 'reset', keyword: null });
+};
+
 document.addEventListener('DOMContentLoaded', showCards);
 
 window.addEventListener('resize', renderGraphics);
-
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-};

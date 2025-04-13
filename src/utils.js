@@ -26,15 +26,28 @@ export function searchSpecies(data, keyword) {
 
     //go back up tree starting from target species
     while (currentCategory) {
-        currentCategory.members = [];
         pathToSearch.push([currentCategory]);
         currentCategory = currentCategory.parent;
     }
 
-    //append target species to first category
-    pathToSearch[0][0].members = [speciesMatch];
+    //hide other species in target category
+    pathToSearch[0][0].members.forEach(species => {
+        if (species != speciesMatch) {
+            species.visible = false;
+        }
+    });
 
     return pathToSearch.reverse();
 }
 
-export function filterByKingdom(data) {}
+export function filterByKingdom(data, keyword) {}
+
+export function resetAll(data) {
+    data.forEach(categories => {
+        categories.forEach(category => {
+            category.members.forEach(species => {
+                species.visible = true;
+            });
+        });
+    });
+}

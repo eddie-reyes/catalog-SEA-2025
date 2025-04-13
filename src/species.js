@@ -5,6 +5,7 @@ class Species extends Card {
         super(title);
         this.imgPath = imgPath;
         this.latinName = latinName;
+        this.visible = true;
     }
 
     setElement(element) {
@@ -12,7 +13,9 @@ class Species extends Card {
     }
 
     render(borderColor) {
-        this.element.style.display = 'block';
+        this.visible
+            ? (this.element.style.display = 'block')
+            : (this.element.style.display = 'none');
 
         const img = this.element.querySelector('img');
         img.src = this.imgPath;

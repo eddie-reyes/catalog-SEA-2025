@@ -57,9 +57,7 @@ body {
 }
 
 .category:hover {
-    transform: scale(
-        1.1
-    ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.1);
 }
 
 .species {
@@ -95,18 +93,20 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10rem;
     padding: 2rem 0;
     z-index: 2;
 }
 
-input {
+input,
+select {
     width: 300px;
     height: 30px;
     font-size: large;
     margin-left: 0.5rem;
 }
 
-.search-btn {
+button {
     padding: 12px 24px;
     margin-left: 0.5rem;
     background-color: #007bff;
@@ -118,6 +118,6 @@ input {
     transition: background-color 0.3s ease;
 }
 
-.search-btn:hover {
+button:hover {
     background-color: #0056b3;
 }
