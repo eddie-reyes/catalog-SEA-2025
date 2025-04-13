@@ -36,7 +36,6 @@ canvas.width = window.innerWidth * window.devicePixelRatio;
 canvas.height = window.innerHeight * window.devicePixelRatio * 5;
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
-ctx.strokeStyle = '#a2b9bd';
 
 // This function adds cards the page to display the data in the array
 function showCards() {

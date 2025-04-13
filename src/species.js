@@ -11,11 +11,13 @@ class Species extends Card {
         this.element = element;
     }
 
-    render() {
+    render(borderColor) {
         this.element.style.display = 'block';
 
         const img = this.element.querySelector('img');
         img.src = this.imgPath;
+        img.style.borderColor = borderColor;
+        img.style.filter = 'brightness(85%)';
 
         const title = this.element.querySelector('h3');
         title.textContent = this.title;

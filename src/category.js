@@ -1,10 +1,12 @@
 import Card from './card.js';
 
 class Category extends Card {
-    constructor(title, parent, members) {
+    constructor(title, parent, members, color, flowDirection = 'column') {
         super(title);
         this.parent = parent;
         this.members = members;
+        this.color = color;
+        this.flowDirection = flowDirection;
     }
 
     setElement(element) {
@@ -13,6 +15,7 @@ class Category extends Card {
 
     renderSelf(speciesTemplate) {
         this.element.style.display = 'block';
+        this.element.style.backgroundColor = this.color;
 
         const cardHeader = this.element.querySelector('h2');
         cardHeader.textContent = this.title;
@@ -21,11 +24,13 @@ class Category extends Card {
             let nextSpecies = speciesTemplate.cloneNode(true);
             this.element.appendChild(nextSpecies);
             species.setElement(nextSpecies);
-            species.render();
+            species.render(this.color);
         });
     }
 
     renderConnections(ctx) {
+        ctx.strokeStyle = '#a2b9bd';
+
         if (this.parent != null) {
             let from = this.parent.element.getBoundingClientRect();
             let to = this.element.getBoundingClientRect();
