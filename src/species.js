@@ -9,10 +9,12 @@ class Species extends Card {
     }
 
     setElement(element) {
+        //bind element to object instance
         this.element = element;
     }
 
     render(borderColor) {
+        //render element
         this.visible
             ? (this.element.style.display = 'block')
             : (this.element.style.display = 'none');

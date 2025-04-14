@@ -24,7 +24,7 @@
  */
 
 import data from './src/dataset.js';
-import { searchSpecies, filterByKingdom, resetAll } from './src/utils.js';
+import { searchSpecies, filterByKingdom, sortAlphabetically, resetAll } from './src/utils.js';
 
 //parent element
 const cardContainer = document.getElementById('card-container');
@@ -45,12 +45,20 @@ const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
 const resetButton = document.querySelector('.reset-btn');
 const selectFilter = document.getElementById('kingdom');
+const sortButton = document.querySelector('.sort-btn');
+
+//footer text
+const footerText = document.querySelector('.pre-footer');
+
+//sort toggle
+let useSort = false;
 
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
 
 // This function adds cards the page to display the data in the array
 function showCards(option) {
+    //determine which dataset or sub-dataset to load
     switch (option.type) {
         //search species
         case 'search':
@@ -60,17 +68,21 @@ function showCards(option) {
         case 'filter':
             dataBuffer = filterByKingdom(data, option.keyword);
             break;
+        //sort alphabetically
+        case 'sort':
+            dataBuffer = sortAlphabetically(data, option.keyword);
+            break;
         //no option, just load entire dataset
         default:
             dataBuffer = data;
     }
 
-    //reset card containter
+    //reset card containter after new option is selected
     while (cardContainer.firstChild) {
         cardContainer.firstChild.remove();
     }
 
-    //each row is represented by an array in data
+    //each row is represented by an array in dataset
     dataBuffer.forEach(categories => {
         //create new row
         const nextRow = row.cloneNode(true);
@@ -86,11 +98,13 @@ function showCards(option) {
             category.renderSelf(templateSpecies);
         });
 
+        //dont render flexbox if row is empty
         if (!nextRow.hasChildNodes()) nextRow.style.display = 'none';
     });
     //render connections on canvas after creating elements, otherwise card positions will be incorrect
     renderGraphics();
 
+    //search animation
     if (option.type == 'search') {
         scrollTo(0, 0);
         let lastRow = cardContainer.lastChild;
@@ -99,12 +113,18 @@ function showCards(option) {
             block: 'center',
         });
     }
+
+    //render pre-footer text if no options
+    option.keyword ? (footerText.style.display = 'none') : (footerText.style.display = 'block');
 }
 
 function renderGraphics() {
+    //only way to get canvas to cover entire page
     canvas.width = window.innerWidth * window.devicePixelRatio;
     canvas.height = window.innerHeight * window.devicePixelRatio * 5.5;
     ctx.lineWidth = 10;
+
+    //clear graphics everytime window size changes/rerender
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     dataBuffer.forEach(categories => {
         categories.forEach(category => {
@@ -113,28 +133,43 @@ function renderGraphics() {
     });
 }
 
-// This calls the addCards() function when the page is first loaded
-
+//search button events
 searchButton.onclick = function () {
     if (searchInput.value.length == 0) return;
 
     showCards({ type: 'search', keyword: searchInput.value });
 };
 
+//filter drop-down events
 selectFilter.onchange = function () {
     if (selectFilter.value == 'default') return;
 
     showCards({ type: 'filter', keyword: selectFilter.value });
 };
 
+//reset button events
 resetButton.onclick = function () {
     resetAll(data);
+
+    scrollTo(0, 0);
 
     searchInput.value = '';
     selectFilter.value = 'default';
     showCards({ type: 'reset', keyword: null });
 };
 
+//sort button events
+sortButton.onclick = function () {
+    useSort = !useSort; //sort toggle
+
+    useSort
+        ? (sortButton.innerHTML = 'Sort by Timeline')
+        : (sortButton.innerHTML = 'Sort Alphabetically');
+
+    showCards({ type: 'sort', keyword: useSort });
+};
+
 document.addEventListener('DOMContentLoaded', showCards);
 
+//redraw graphics everytime window is resized
 window.addEventListener('resize', renderGraphics);

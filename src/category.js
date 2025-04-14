@@ -10,10 +10,12 @@ class Category extends Card {
     }
 
     setElement(element) {
+        //bind element to object instance
         this.element = element;
     }
 
     renderSelf(speciesTemplate) {
+        //render category and child elements
         this.element.style.display = 'block';
         this.element.style.backgroundColor = this.color;
 
@@ -29,17 +31,18 @@ class Category extends Card {
     }
 
     renderConnections(ctx) {
+        //draw connection between parent and self
         ctx.strokeStyle = this.color;
 
         if (this.parent != null) {
-            let from = this.parent.element.getBoundingClientRect();
+            let from = this.parent.element.getBoundingClientRect(); //gets x,y in viewport
             //cheap hack for filter to work
             if (from.x <= 0) return;
             let to = this.element.getBoundingClientRect();
 
             ctx.beginPath();
-            ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2 + window.pageYOffset);
-            ctx.lineTo(to.x + to.width / 2, to.y + to.height / 2 + window.pageYOffset);
+            ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2 + window.pageYOffset); //center of parent
+            ctx.lineTo(to.x + to.width / 2, to.y + to.height / 2 + window.pageYOffset); //center of self
             ctx.stroke();
         }
     }

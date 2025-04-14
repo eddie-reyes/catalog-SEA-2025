@@ -19,7 +19,7 @@ const luca = new Category(
     null,
     [
         new Species(
-            '"Last Universal Common Ancestor"',
+            'Last Universal Common Ancestor',
             './src/images/luca.png',
             'the orgin of all life on earth'
         ),
@@ -130,9 +130,9 @@ const protostomes = new Category(
     'PROTOSTOMES',
     animaliaKingdom,
     [
-        new Species('earthworms, leeches', './src/images/earthworm.png', 'annelida'),
-        new Species('flatworms', './src/images/flatworm.png', 'platyhelminthes'),
-        new Species('roundworms', './src/images/roundworm.png', 'nematoda'),
+        new Species('Earthworms, leeches', './src/images/earthworm.png', 'annelida'),
+        new Species('Flatworms', './src/images/flatworm.png', 'platyhelminthes'),
+        new Species('Roundworms', './src/images/roundworm.png', 'nematoda'),
     ],
     blue,
     'animalia'
@@ -140,7 +140,7 @@ const protostomes = new Category(
 const chordata = new Category(
     'CHORDATA PHYLUM',
     animaliaKingdom,
-    [new Species('lancelets', './src/images/lancelets.png', 'cephalochordata')],
+    [new Species('Lancelets', './src/images/lancelets.png', 'cephalochordata')],
     blue,
     'animalia'
 );
@@ -209,7 +209,7 @@ const agaricales = new Category(
     'AGARICALES',
     basidiomycota,
     [
-        new Species('"Magic" Mushrooms', './src/images/magicmushrooms.png', 'P. semilanceata'),
+        new Species('Magic Mushrooms', './src/images/magicmushrooms.png', 'P. semilanceata'),
         new Species('Button Mushrooms', './src/images/buttonmushroom.png', 'A. bisporus'),
         new Species('Shiitake Mushrooms', './src/images/shiitakemushroom.png', 'L. edodes'),
     ],

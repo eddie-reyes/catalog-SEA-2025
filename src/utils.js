@@ -1,28 +1,33 @@
+import Category from './category.js';
+
+//this file contains all of the utility functions that perform operations on the dataset (sort, filter, search, reset)
+
 export function searchSpecies(data, keyword) {
     let speciesMatch;
     let currentCategory;
 
     //search all categories
-    for (let categories of data) {
-        for (let category of categories) {
-            for (let species of category.members) {
+    data.forEach(categories => {
+        categories.forEach(category => {
+            category.members.forEach(member => {
                 if (
                     //compare search to common name & scientific name
-                    species.title.toLowerCase().includes(keyword) ||
-                    species.latinName.toLowerCase().includes(keyword)
+                    member.title.toLowerCase().includes(keyword) ||
+                    member.latinName.toLowerCase().includes(keyword)
                 ) {
-                    speciesMatch = species;
+                    speciesMatch = member;
                     currentCategory = category;
                 }
-            }
-        }
-    }
+            });
+        });
+    });
 
     //just return full dataset if no matches
     if (!speciesMatch) {
         return data;
     }
 
+    //this will hold the categories which lead to target species
     let pathToSearch = [];
 
     //go back up tree starting from target species
@@ -38,7 +43,7 @@ export function searchSpecies(data, keyword) {
         }
     });
 
-    //reverse so that target species is in last idx
+    //reverse so that tree is top down
     return pathToSearch.reverse();
 }
 
@@ -49,6 +54,7 @@ export function filterByKingdom(data, keyword) {
         let currentRow = [];
         categories.forEach(category => {
             if (category.kingdom == keyword) {
+                //only append elements whose kingdom corresponds with selection
                 currentRow.push(category);
             }
         });
@@ -56,11 +62,34 @@ export function filterByKingdom(data, keyword) {
         kingdom.push(currentRow);
     });
 
+    //go to top of window
     scrollTo(0, 0);
 
     return kingdom;
 }
 
+export function sortAlphabetically(data, useSort) {
+    if (!useSort) return data; //no sort, just use dataset
+
+    //each category correlates to a letter of the alphabet
+    let alphabetizedData = new Array(26).fill().map((val, idx) => {
+        return [new Category(String.fromCharCode(65 + idx), null, [], '#808080')];
+    });
+
+    data.forEach(categories => {
+        categories.forEach(category => {
+            if (category.length != 0) {
+                category.members.forEach(member => {
+                    let idx = member.title.charCodeAt(0) - 65; //map char to index in alphabetized array
+
+                    alphabetizedData[idx][0].members.push(member);
+                });
+            }
+        });
+    });
+
+    return alphabetizedData;
+}
 export function resetAll(data) {
     data.forEach(categories => {
         categories.forEach(category => {
