@@ -54,6 +54,8 @@ export function filterByKingdom(data, keyword) {
         kingdom.push(currentRow);
     });
 
+    scrollTo(0, 0);
+
     return kingdom;
 }
 

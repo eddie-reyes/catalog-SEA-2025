@@ -1,3 +1,9 @@
+/*
+Dataset complied from UsefulCharts:
+    https://www.youtube.com/watch?v=ii4510LeRXo
+
+*/
+
 import Category from './category.js';
 import Species from './species.js';
 
@@ -5,6 +11,7 @@ const light_blue = '#a2b9bd';
 const dark_yellow = '#B7AD86';
 const blue = '#7ABCDA';
 const green = '#6ACC66';
+const purple = '#AC81B0';
 
 const luca = new Category(
     'LUCA',
@@ -22,7 +29,7 @@ const luca = new Category(
 const archaeaDomain = new Category(
     'ARCHAEA DOMAIN',
     luca,
-    [new Species('Thermophile', './src/images/thermophile.png', 'thermophilus')],
+    [new Species('Thermophiles', './src/images/thermophile.png', 'thermophilus')],
     light_blue
 );
 
@@ -75,7 +82,8 @@ const plantaeKingdom = new Category(
         ),
         new Species('Mosses, liverworts, hornworts', './src/images/byrophyta.png', 'bryophyta'),
     ],
-    green
+    green,
+    'plantae'
 );
 const fungiKingdom = new Category(
     'FUNGI KINGDOM',
@@ -94,7 +102,8 @@ const animaliaKingdom = new Category(
         new Species('Sea Sponges', './src/images/seasponge.png', 'porifera phylum'),
         new Species('Comb Jelly', './src/images/combjelly.png', 'ctenophora'),
     ],
-    blue
+    blue,
+    'animalia'
 );
 
 const basidiomycota = new Category(
@@ -124,13 +133,15 @@ const protostomes = new Category(
         new Species('flatworms', './src/images/flatworm.png', 'platyhelminthes'),
         new Species('roundworms', './src/images/roundworm.png', 'nematoda'),
     ],
-    blue
+    blue,
+    'animalia'
 );
 const chordata = new Category(
     'CHORDATA PHYLUM',
     animaliaKingdom,
     [new Species('lancelets', './src/images/lancelets.png', 'cephalochordata')],
-    blue
+    blue,
+    'animalia'
 );
 
 const gymnosperms = new Category(
@@ -141,9 +152,69 @@ const gymnosperms = new Category(
         new Species('Monkey Puzzle Tree', './src/images/monkeypuzzle.png', 'araucariales'),
         new Species('Cypress Trees, Redwoods', './src/images/cupressales.png', 'cupressales'),
     ],
-    green
+    green,
+    'plantae'
 );
-const angiosperms = new Category('ANGIOSPERMS', plantaeKingdom, [], green);
+const angiosperms = new Category('ANGIOSPERMS', plantaeKingdom, [], green, 'plantae');
+
+const magnoliid = new Category(
+    'MAGNOLIID DICOTS',
+    angiosperms,
+    [
+        new Species('Radiator Plants', './src/images/radiatorplants.png', 'peperomia'),
+        new Species('Black Pepper', './src/images/blackpepper.png', 'P. nigrum'),
+        new Species('Bay Laurel', './src/images/baylaurel.png', 'L. nobilis'),
+    ],
+    green,
+    'plantae'
+);
+
+const monocots = new Category(
+    'MONOCOTS',
+    angiosperms,
+    [
+        new Species('Coconut Palm Tree', './src/images/coconutpalm.png', 'arecales'),
+        new Species('Lilies & Tulips', './src/images/tulips.png', 'liliales'),
+    ],
+    green,
+    'plantae'
+);
+
+const vertebrates = new Category(
+    'VERTEBRATES',
+    chordata,
+    [
+        new Species('Rays', './src/images/ray.png', 'myliobatiformes'),
+        new Species('Sharks', './src/images/shark.png', 'lamniformes'),
+    ],
+    blue,
+    'animalia'
+);
+
+const insectClass = new Category(
+    'INSECT CLASS',
+    protostomes,
+    [
+        new Species('Dragonflies', './src/images/dragonfly.png', 'odonata'),
+        new Species('Lice', './src/images/lice.png', 'psocodea'),
+        new Species('Cockroaches', './src/images/cockroach.png', 'blattodea'),
+        new Species('Mantises', './src/images/mantis.png', 'mantodea'),
+    ],
+    purple,
+    'insect'
+);
+
+const agaricales = new Category(
+    'AGARICALES',
+    basidiomycota,
+    [
+        new Species('"Magic" Mushrooms', './src/images/magicmushrooms.png', 'P. semilanceata'),
+        new Species('Button Mushrooms', './src/images/buttonmushroom.png', 'A. bisporus'),
+        new Species('Shiitake Mushrooms', './src/images/shiitakemushroom.png', 'L. edodes'),
+    ],
+    dark_yellow,
+    'fungi'
+);
 
 const data = [
     [luca],
@@ -152,6 +223,7 @@ const data = [
     [opisothokonts, archaeplastida],
     [fungiKingdom, animaliaKingdom, plantaeKingdom],
     [ascomycota, basidiomycota, protostomes, chordata, angiosperms, gymnosperms],
+    [agaricales, insectClass, vertebrates, magnoliid, monocots],
 ];
 
 export default data;

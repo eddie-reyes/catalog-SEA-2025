@@ -90,6 +90,15 @@ function showCards(option) {
     });
     //render connections on canvas after creating elements, otherwise card positions will be incorrect
     renderGraphics();
+
+    if (option.type == 'search') {
+        scrollTo(0, 0);
+        let lastRow = cardContainer.lastChild;
+        lastRow.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        });
+    }
 }
 
 function renderGraphics() {
