@@ -40,7 +40,22 @@ export function searchSpecies(data, keyword) {
     return pathToSearch.reverse();
 }
 
-export function filterByKingdom(data, keyword) {}
+export function filterByKingdom(data, keyword) {
+    let kingdom = [];
+
+    data.forEach(categories => {
+        let currentRow = [];
+        categories.forEach(category => {
+            if (category.kingdom == keyword) {
+                currentRow.push(category);
+            }
+        });
+
+        kingdom.push(currentRow);
+    });
+
+    return kingdom;
+}
 
 export function resetAll(data) {
     data.forEach(categories => {

@@ -84,7 +84,8 @@ const fungiKingdom = new Category(
         new Species('Aquatic Fungi', './src/images/aquaticfungi.png', 'chytridiomycota'),
         new Species('Bread Mold', './src/images/breadmold.png', 'rhizopus stolonifer'),
     ],
-    dark_yellow
+    dark_yellow,
+    'fungi'
 );
 const animaliaKingdom = new Category(
     'ANIMALIA KINGDOM',
@@ -96,7 +97,13 @@ const animaliaKingdom = new Category(
     blue
 );
 
-const basidiomycota = new Category('BASIDIO-MYCOTA DIVISION', fungiKingdom, [], dark_yellow);
+const basidiomycota = new Category(
+    'BASIDIO-MYCOTA DIVISION',
+    fungiKingdom,
+    [],
+    dark_yellow,
+    'fungi'
+);
 const ascomycota = new Category(
     'ASCO-MYCOTA DIVISION',
     fungiKingdom,
@@ -105,7 +112,8 @@ const ascomycota = new Category(
         new Species('Lichenized Fungi', './src/images/lichenizedfungi.png', 'lecanoromycetes'),
         new Species('Truffles', './src/images/truffles.png', 'tuber macrosporum'),
     ],
-    dark_yellow
+    dark_yellow,
+    'fungi'
 );
 
 const protostomes = new Category(

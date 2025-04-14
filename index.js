@@ -26,6 +26,7 @@
 import data from './src/dataset.js';
 import { searchSpecies, filterByKingdom, resetAll } from './src/utils.js';
 
+//parent element
 const cardContainer = document.getElementById('card-container');
 
 //holds actual cards to render
@@ -43,6 +44,7 @@ const canvas = document.getElementById('canvas');
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
 const resetButton = document.querySelector('.reset-btn');
+const selectFilter = document.getElementById('kingdom');
 
 const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
@@ -83,6 +85,8 @@ function showCards(option) {
             //render element
             category.renderSelf(templateSpecies);
         });
+
+        if (!nextRow.hasChildNodes()) nextRow.style.display = 'none';
     });
     //render connections on canvas after creating elements, otherwise card positions will be incorrect
     renderGraphics();
@@ -95,7 +99,7 @@ function renderGraphics() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     dataBuffer.forEach(categories => {
         categories.forEach(category => {
-            category.renderConnections(ctx);
+            category.renderConnections(ctx, cardContainer);
         });
     });
 }
@@ -108,9 +112,17 @@ searchButton.onclick = function () {
     showCards({ type: 'search', keyword: searchInput.value });
 };
 
+selectFilter.onchange = function () {
+    if (selectFilter.value == 'default') return;
+
+    showCards({ type: 'filter', keyword: selectFilter.value });
+};
+
 resetButton.onclick = function () {
     resetAll(data);
 
+    searchInput.value = '';
+    selectFilter.value = 'default';
     showCards({ type: 'reset', keyword: null });
 };
 

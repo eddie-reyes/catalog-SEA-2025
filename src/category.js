@@ -1,12 +1,12 @@
 import Card from './card.js';
 
 class Category extends Card {
-    constructor(title, parent, members, color, flowDirection = 'column') {
+    constructor(title, parent, members, color, kingdom = 'none') {
         super(title);
         this.parent = parent;
         this.members = members;
         this.color = color;
-        this.flowDirection = flowDirection;
+        this.kingdom = kingdom;
     }
 
     setElement(element) {
@@ -33,6 +33,8 @@ class Category extends Card {
 
         if (this.parent != null) {
             let from = this.parent.element.getBoundingClientRect();
+            //cheap hack for filter to work
+            if (from.x <= 0) return;
             let to = this.element.getBoundingClientRect();
             ctx.beginPath();
             ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2 + window.pageYOffset);

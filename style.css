@@ -14,11 +14,12 @@ body {
 
 .subtext {
     opacity: 50%;
+    color: black;
     font-style: italic;
     font-size: x-large;
-    text-align: right;
-    margin: 0 21%;
     font-weight: 200;
+    text-align: right;
+    padding-right: 21%;
     transform: translateY(-1rem);
 }
 
@@ -86,15 +87,22 @@ h2 {
     margin: 0;
 }
 
+i {
+    color: white;
+}
+
 .footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px 10px 0 0;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 50%;
+    left: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10rem;
-    padding: 2rem 0;
+    gap: 5rem;
+    padding: 1rem 0;
     z-index: 2;
 }
 
