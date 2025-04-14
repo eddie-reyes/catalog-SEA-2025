@@ -7,6 +7,7 @@ export function searchSpecies(data, keyword) {
         for (let category of categories) {
             for (let species of category.members) {
                 if (
+                    //compare search to common name & scientific name
                     species.title.toLowerCase().includes(keyword) ||
                     species.latinName.toLowerCase().includes(keyword)
                 ) {
@@ -37,6 +38,7 @@ export function searchSpecies(data, keyword) {
         }
     });
 
+    //reverse so that target species is in last idx
     return pathToSearch.reverse();
 }
 
@@ -63,7 +65,7 @@ export function resetAll(data) {
     data.forEach(categories => {
         categories.forEach(category => {
             category.members.forEach(species => {
-                species.visible = true;
+                species.visible = true; //set all species to visible
             });
         });
     });

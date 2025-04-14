@@ -103,7 +103,7 @@ function showCards(option) {
 
 function renderGraphics() {
     canvas.width = window.innerWidth * window.devicePixelRatio;
-    canvas.height = window.innerHeight * window.devicePixelRatio * 5;
+    canvas.height = window.innerHeight * window.devicePixelRatio * 5.5;
     ctx.lineWidth = 10;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     dataBuffer.forEach(categories => {

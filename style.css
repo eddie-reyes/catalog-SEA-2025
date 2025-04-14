@@ -91,6 +91,16 @@ i {
     color: white;
 }
 
+.pre-footer {
+    color: white;
+    text-align: center;
+    opacity: 0.5;
+    font-size: 10rem;
+    font-weight: 200;
+    font-style: italic;
+    margin-top: 10rem;
+}
+
 .footer {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 10px 10px 0 0;

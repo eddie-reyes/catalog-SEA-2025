@@ -12,6 +12,7 @@ const dark_yellow = '#B7AD86';
 const blue = '#7ABCDA';
 const green = '#6ACC66';
 const purple = '#AC81B0';
+const red = '#FE7F5E';
 
 const luca = new Category(
     'LUCA',
@@ -263,6 +264,67 @@ const eudicots = new Category(
     'plantae'
 );
 
+const rosids = new Category(
+    'ROSIDS',
+    eudicots,
+    [
+        new Species('Maple Trees', './src/images/mapletree.png', 'sapindaceae'),
+        new Species('Cabbage, Broccoli', './src/images/broccoli.png', 'brassicales'),
+        new Species('Popular, Aspens', './src/images/salicaceae.png', 'saliceae'),
+    ],
+    green,
+    'plantae'
+);
+
+const asterids = new Category(
+    'ASTERIDS',
+    eudicots,
+    [
+        new Species('Dandelions', './src/images/dandelion.png', 'taraxacum'),
+        new Species('Daisies', './src/images/daisy.png', 'bellis'),
+        new Species('Sunflowers', './src/images/sunflower.png', 'helianthus'),
+    ],
+    green,
+    'plantae'
+);
+
+const percomorpha = new Category(
+    'PEROMORPHA',
+    actinopterygii,
+    [
+        new Species('Seahorses', './src/images/seahorse.png', 'syngnathiformes'),
+        new Species('Halibut, Sole', './src/images/halibut.png', 'pleuronectiformes'),
+        new Species('Guppies', './src/images/guppy.png', 'cyprinodontiformes'),
+        new Species('Betta, Gouramies', './src/images/betta.png', 'anabantiformes'),
+    ],
+    blue,
+    'animalia'
+);
+
+const reptileClass = new Category(
+    'REPTILE CLASS',
+    sarcopterygii,
+    [
+        new Species('Fish-Like "Dinosaurs"', './src/images/fishdino.png', 'ichthyosauria'),
+        new Species('Marine "Dinosaurs"', './src/images/marinedino.png', 'plesiosauria'),
+        new Species('Turtles', './src/images/turtle.png', 'testudines'),
+    ],
+    red,
+    'reptiles'
+);
+
+const hymenoptera = new Category(
+    'HYMENOPTERA',
+    holometabola,
+    [
+        new Species('Ants', './src/images/ant.png', 'formicidae'),
+        new Species('Bees', './src/images/bee.png', 'apidae'),
+        new Species('Hornets, Wasps', './src/images/wasp.png', 'vespidae'),
+    ],
+    purple,
+    'insect'
+);
+
 const data = [
     [luca],
     [archaeaDomain, bacteriaDomain],
@@ -272,6 +334,7 @@ const data = [
     [ascomycota, basidiomycota, protostomes, chordata, angiosperms, gymnosperms],
     [agaricales, insectClass, vertebrates, magnoliid, monocots],
     [holometabola, actinopterygii, sarcopterygii, eudicots],
+    [hymenoptera, percomorpha, reptileClass, rosids, asterids],
 ];
 
 export default data;

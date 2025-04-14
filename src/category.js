@@ -36,6 +36,7 @@ class Category extends Card {
             //cheap hack for filter to work
             if (from.x <= 0) return;
             let to = this.element.getBoundingClientRect();
+
             ctx.beginPath();
             ctx.moveTo(from.x + from.width / 2, from.y + from.height / 2 + window.pageYOffset);
             ctx.lineTo(to.x + to.width / 2, to.y + to.height / 2 + window.pageYOffset);
