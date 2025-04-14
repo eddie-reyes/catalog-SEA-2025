@@ -216,6 +216,53 @@ const agaricales = new Category(
     'fungi'
 );
 
+const holometabola = new Category(
+    'HOLOMETABOLA',
+    insectClass,
+    [
+        new Species('Beetles', './src/images/beetle.png', 'coleoptera'),
+        new Species('Flies', './src/images/fly.png', 'diptera'),
+        new Species('Butterflys, Moths', './src/images/butterfly.png', 'lepidoptera'),
+        new Species('Fleas', './src/images/flea.png', 'siphonaptera'),
+    ],
+    purple,
+    'insect'
+);
+
+const actinopterygii = new Category(
+    'ACTINOPTERYGII',
+    vertebrates,
+    [
+        new Species('Catfish', './src/images/catfish.png', 'siluriformes'),
+        new Species('Herring, Sardines', './src/images/herring.png', 'clupeiformes'),
+        new Species('Tetras, Piranhas', './src/images/tetras.png', 'characiformes'),
+    ],
+    blue,
+    'animalia'
+);
+
+const sarcopterygii = new Category(
+    'SARCOPTERYGII',
+    vertebrates,
+    [
+        new Species('Lungfish', './src/images/lungfish.png', 'dipnoi'),
+        new Species('Coelacanths', './src/images/coelacanth.png', 'actinistia'),
+    ],
+    blue,
+    'animalia'
+);
+
+const eudicots = new Category(
+    'EUDICOTS',
+    monocots,
+    [
+        new Species('Lotuses', './src/images/lotus.png', 'nelumbonaceae'),
+        new Species('Poppies, Buttercups', './src/images/poppies.png', 'ranunculaceae'),
+    ],
+    green,
+    'plantae'
+);
+
 const data = [
     [luca],
     [archaeaDomain, bacteriaDomain],
@@ -224,6 +271,7 @@ const data = [
     [fungiKingdom, animaliaKingdom, plantaeKingdom],
     [ascomycota, basidiomycota, protostomes, chordata, angiosperms, gymnosperms],
     [agaricales, insectClass, vertebrates, magnoliid, monocots],
+    [holometabola, actinopterygii, sarcopterygii, eudicots],
 ];
 
 export default data;
