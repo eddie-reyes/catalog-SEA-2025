@@ -155,6 +155,9 @@ resetButton.onclick = function () {
 
     searchInput.value = '';
     selectFilter.value = 'default';
+    useSort = false;
+    sortButton.innerHTML = 'Sort Alphabetically';
+
     showCards({ type: 'reset', keyword: null });
 };
 

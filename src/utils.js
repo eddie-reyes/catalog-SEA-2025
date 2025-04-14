@@ -12,8 +12,8 @@ export function searchSpecies(data, keyword) {
             category.members.forEach(member => {
                 if (
                     //compare search to common name & scientific name
-                    member.title.toLowerCase().includes(keyword) ||
-                    member.latinName.toLowerCase().includes(keyword)
+                    member.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                    member.latinName.toLowerCase().includes(keyword.toLowerCase())
                 ) {
                     speciesMatch = member;
                     currentCategory = category;
