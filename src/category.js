@@ -14,7 +14,7 @@ class Category extends Card {
         this.element = element;
     }
 
-    renderSelf(speciesTemplate) {
+    renderSelf(speciesTemplate, options) {
         //render category and child elements
         this.element.style.display = 'block';
         this.element.style.backgroundColor = this.color;
@@ -26,15 +26,15 @@ class Category extends Card {
             let nextSpecies = speciesTemplate.cloneNode(true);
             this.element.appendChild(nextSpecies);
             species.setElement(nextSpecies);
-            species.render(this.color);
+            species.render(this.color, options);
         });
     }
 
     renderConnections(ctx) {
         //draw connection between parent and self
-        ctx.strokeStyle = this.color;
 
         if (this.parent != null) {
+            ctx.strokeStyle = this.parent.color;
             let from = this.parent.element.getBoundingClientRect(); //gets x,y in viewport
             //cheap hack for filter to work
             if (from.x <= 0) return;

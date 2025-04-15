@@ -325,6 +325,31 @@ const hymenoptera = new Category(
     'insect'
 );
 
+const dinosauria = new Category(
+    'DINOSAURIA',
+    reptileClass,
+    [
+        new Species('Armoured Dinosaurs', './src/images/ankylosauridae.png', 'ankylosauridae'),
+        new Species('Duck-billed Dinosaurs', './src/images/stegosaruidae.png', 'hadrosauridae'),
+        new Species('Stegosaurus', './src/images/stegosaurus.png', 'stegosaruidae'),
+        new Species('Triceratops', './src/images/triceratops.png', 'ceratopsidae'),
+    ],
+    red,
+    'reptiles'
+);
+
+const squamata = new Category(
+    'SQUAMATA',
+    reptileClass,
+    [
+        new Species('Geckoes', './src/images/gecko.png', 'gekkonidae'),
+        new Species('Chameleons', './src/images/chameleon.png', 'chamaeleonidae'),
+        new Species('Iguanas', './src/images/iguana.png', 'iquanidae'),
+    ],
+    red,
+    'reptiles'
+);
+
 const data = [
     [luca],
     [archaeaDomain, bacteriaDomain],
@@ -335,6 +360,7 @@ const data = [
     [agaricales, insectClass, vertebrates, magnoliid, monocots],
     [holometabola, actinopterygii, sarcopterygii, eudicots],
     [hymenoptera, percomorpha, reptileClass, rosids, asterids],
+    [dinosauria, squamata],
 ];
 
 export default data;

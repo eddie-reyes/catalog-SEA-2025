@@ -57,27 +57,27 @@ const ctx = canvas.getContext('2d');
 ctx.lineWidth = 10;
 
 // This function adds cards the page to display the data in the array
-function showCards(option) {
+function showCards(options) {
     //determine which dataset or sub-dataset to load
-    switch (option.type) {
+    switch (options.type) {
         //search species
         case 'search':
-            dataBuffer = searchSpecies(data, option.keyword);
+            dataBuffer = searchSpecies(data, options.keyword);
             break;
         //filter kingdom
         case 'filter':
-            dataBuffer = filterByKingdom(data, option.keyword);
+            dataBuffer = filterByKingdom(data, options.keyword);
             break;
         //sort alphabetically
         case 'sort':
-            dataBuffer = sortAlphabetically(data, option.keyword);
+            dataBuffer = sortAlphabetically(data, options.keyword);
             break;
-        //no option, just load entire dataset
+        //no options, just load entire dataset
         default:
             dataBuffer = data;
     }
 
-    //reset card containter after new option is selected
+    //reset card containter after new options is selected
     while (cardContainer.firstChild) {
         cardContainer.firstChild.remove();
     }
@@ -95,7 +95,7 @@ function showCards(option) {
             //bind element to object
             category.setElement(nextCategory);
             //render element
-            category.renderSelf(templateSpecies);
+            category.renderSelf(templateSpecies, options);
         });
 
         //dont render flexbox if row is empty
@@ -105,7 +105,7 @@ function showCards(option) {
     renderGraphics();
 
     //search animation
-    if (option.type == 'search') {
+    if (options.type == 'search') {
         scrollTo(0, 0);
         let lastRow = cardContainer.lastChild;
         lastRow.scrollIntoView({
@@ -115,13 +115,13 @@ function showCards(option) {
     }
 
     //render pre-footer text if no options
-    option.keyword ? (footerText.style.display = 'none') : (footerText.style.display = 'block');
+    options.keyword ? (footerText.style.display = 'none') : (footerText.style.display = 'block');
 }
 
 function renderGraphics() {
     //only way to get canvas to cover entire page
     canvas.width = window.innerWidth * window.devicePixelRatio;
-    canvas.height = window.innerHeight * window.devicePixelRatio * 5.5;
+    canvas.height = window.innerHeight * window.devicePixelRatio * 6.5;
     ctx.lineWidth = 10;
 
     //clear graphics everytime window size changes/rerender

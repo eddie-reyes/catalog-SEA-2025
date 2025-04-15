@@ -13,11 +13,17 @@ class Species extends Card {
         this.element = element;
     }
 
-    render(borderColor) {
+    render(borderColor, options) {
         //render element
         this.visible
             ? (this.element.style.display = 'block')
             : (this.element.style.display = 'none');
+
+        //styling for sort
+        if (options.type == 'sort' && options.keyword) {
+            this.element.style.display = 'inline-block';
+            this.element.style.width = '200px';
+        }
 
         const img = this.element.querySelector('img');
         img.src = this.imgPath;

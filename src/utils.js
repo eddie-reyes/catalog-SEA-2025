@@ -88,6 +88,9 @@ export function sortAlphabetically(data, useSort) {
         });
     });
 
+    //go to top of window
+    scrollTo(0, 0);
+
     return alphabetizedData;
 }
 export function resetAll(data) {
